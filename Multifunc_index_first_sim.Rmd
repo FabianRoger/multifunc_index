@@ -1,18 +1,25 @@
 ---
 title: "Multifunc index - first sim"
-output: html_notebook
+output:
+  html_document: default
+  html_notebook: default
 ---
 
 This is code for some first simulations for a multifunctionality index.
 
-Trying to recreate the ![plot from Jarret](Jarret_20170925.tiff):
+Trying to recreate this plot from Jarret
 
-```{r}
-library(tidyverse)
+![plot from Jarret](Jarret_20170925.tiff):
+
+loading the library
+```{r, message = FALSE}
+library(dplyr)
+library(ggplot2)
 library(vegan)
 ```
 
 
+simulating own version
 ```{r}
 
 Com <- expand.grid(lapply(1:4, function(x) seq(1,0, -0.1))) %>% 
