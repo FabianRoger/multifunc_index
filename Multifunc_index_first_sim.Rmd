@@ -1,0 +1,40 @@
+---
+title: "Multifunc index - first sim"
+output: html_notebook
+---
+
+This is code for some first simulations for a multifunctionality index.
+
+Trying to recreate the ![plot from Jarret](Jarret_20170925.tiff):
+
+```{r}
+library(tidyverse)
+library(vegan)
+```
+
+
+```{r}
+
+Com <- expand.grid(lapply(1:4, function(x) seq(1,0, -0.1))) %>% 
+  data.frame()
+  
+
+EV <- apply(Com, 1, function(x) exp(diversity(x))/length(x))
+AV_Func <- apply(Com, 1, function(x) mean(x))
+ex_Sh <- apply(Com, 1, function(x) exp(diversity(x)))
+
+DF <- data.frame(EV = EV,
+           AV_Func = AV_Func,
+           ex_Sh = ex_Sh) %>%
+  distinct() %>% 
+  mutate(MF = AV_Func*ex_Sh )
+
+ggplot(DF, aes(x = AV_Func, y = EV, colour = MF))+
+  geom_point(size = 2, alpha = 0.8)+
+  scale_x_continuous(limits = c(0,1))+
+  scale_y_continuous(limits = c(0,1))+
+  scale_color_gradientn(colours = rainbow(5))+
+  theme_bw()
+  
+```
+
