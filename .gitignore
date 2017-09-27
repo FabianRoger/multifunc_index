@@ -1,10 +1,10 @@
 .Rproj.user
-.^history
+.*history
 .RData
 .Ruserdata
-.html
-.tiff
-.jpeg
-.pdf
-.Rproj
+*.html
+*.tiff
+*.jpeg
+*.pdf
+*.Rproj
 
